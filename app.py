@@ -32,3 +32,7 @@ def predict():
     output = model.predict(final_input)[0]
     
     return render_template("home.html",prediction_text = "The house prediction price is ₹ {}".format(output))
+
+
+if __name__ == "__main__":
+    app.run()
