@@ -2,9 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image" href="logo.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Realestate - Choose your dream home</title>
+    <title>HomeValue.ai</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -528,7 +529,7 @@
 
       /*========== CONTACT =========*/
       .contact {
-        padding-block-end: calc(var(--section-padding) * 2);
+        padding-block-end: calc(var(--section-padding) * 3);
         text-align: center;
       }
 
@@ -904,13 +905,13 @@
         <nav class="navbar container" data-navbar>
           <ul class="navbar-list">
             <li>
-              <a href="#important" class="navbar-link" data-nav-link>Predict</a>
+              <a href="#" class="navbar-link" onclick="scrollToCenter('important')">Predict</a>
             </li>
             <li>
               <a href="#contact" class="navbar-link" data-nav-link>Contact</a>
             </li>
             <li>
-              <a href="#About" class="navbar-link" data-nav-link>About Us</a>
+              <a href="#" class="navbar-link" data-nav-link onclick="scrollToAbout(event)">About Us</a>
             </li>
           </ul>
         </nav>
@@ -938,9 +939,9 @@
     <main>
       <article class="article">
         <section class="section hero" aria-label="hero">
-          <div class="container">
-            <div class="hero-bg">
-              <div class="hero-content">
+          <div class="container" >
+            <div class="hero-bg" >
+              <div class="hero-content" >
                 <h1 class="h1 hero-title">
                   We will help you find your
                   <span class="span">Dream</span> home in
@@ -1676,7 +1677,7 @@
                   Predict Now
                 </button>
               </form>
-              <div class="prediction">{{prediction_text}}</div>
+              <div class="prediction" id="prediction">{{prediction_text}}</div>
             </div>
           </div>
         </section>
@@ -1764,38 +1765,6 @@
           </div>
         </section>
         <!--=========About===========-->
-        <!-- <section class="section service" id="About" aria-label="service">
-          <div class="container">
-            
-            <ul class="service-list">
-              <li>
-                <div class="service-card">
-                  <div class="card-icon">
-                    <ion-icon name="person-outline"></ion-icon>
-                  </div>
-                  <h3 class="h3 card-title">Deepak kumar Raj</h3>
-                  <p class="card-text">
-                    UIET, Panjab University <br />
-                    Chandigarh
-                  </p>
-                </div>
-              </li>
-
-              <li>
-                <div class="service-card">
-                  <div class="card-icon">
-                    <ion-icon name="person-outline"></ion-icon>
-                  </div>
-                  <h3 class="h3 card-title">Ayan Baidya</h3>
-                  <p class="card-text">
-                    UIET, Panjab University <br />
-                    Chandigarh
-                  </p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </section> -->
         <section class="section service" id="About" aria-label="service">
           <div class="container">
             
@@ -1943,5 +1912,44 @@
       nomodule
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
+    <script>
+      function scrollToCenter(id) {
+        const target = document.getElementById(id);
+        if (!target) return;
+    
+        const elementRect = target.getBoundingClientRect();
+        const absoluteElementTop = elementRect.top + window.pageYOffset;
+        const middle = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
+    
+        window.scrollTo({
+          top: middle,
+          behavior: 'smooth'
+        });
+      }
+    </script>
+
+    <script>
+      window.onload = function () {
+        const prediction = document.getElementById("prediction");
+        if (prediction && prediction.textContent.trim() !== "") {
+          prediction.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      };
+    </script>
+    <script>
+      function scrollToAbout(event) {
+        event.preventDefault();  // This stops the default jump to top
+    
+        const aboutSection = document.getElementById("About");
+        const rect = aboutSection.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const offset = rect.top + scrollTop - (window.innerHeight / 2) + (rect.height / 2);
+    
+        window.scrollTo({
+          top: offset,
+          behavior: "smooth"
+        });
+      }
+    </script>
   </body>
 </html>

@@ -18,7 +18,7 @@ def predict_api():
     data_array = np.array(list(data.values())).reshape(1, -1)
     
     output = model.predict(data_array)
-    # print(output[0])
+    # print(output[0]) 
     
     return jsonify(output[0])
 
